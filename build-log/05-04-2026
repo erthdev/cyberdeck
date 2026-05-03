@@ -1,0 +1,36 @@
+# Log 03 - May 4, 2026
+
+Today was a full planning session, and honestly one of the most productive days of the build so far. No hardware touched, but almost every major system decision got locked in. The machine is still sitting in pieces, but by the end of today the entire architecture of the cyberdeck finally has a clear direction.
+
+The biggest shift was dropping the battery-powered approach entirely. I had been going back and forth on 12V versus 24V battery packs, but the more I thought about it, the more I realized I was adding complexity I did not need. Battery management, charge circuits, degradation over time, lithium safety, none of that is worth it when "portable" can just mean plugging into a wall outlet wherever I set it up. A Pico PSU with an external 12V DC brick gives me everything I need with almost none of the headaches.
+
+The Pico PSU itself takes up almost no space inside the chassis, generates almost no heat, and keeps the interior clean. The external brick handles the AC conversion outside the enclosure entirely. This is the right call and I am not second-guessing it anymore.
+
+Cooling also got finalized today. The plan is two blower fans on the left wall as active intake, pushing air left to right across the board toward the CPU. A proper LGA1155 desktop cooler rated for 65 to 95W TDP sits on the CPU and exhausts hot air out through a vent on the right wall. No laptop aluminum heatsink, no liquid cooling, no overengineering. Just a solid cooler doing its job with fresh air being fed to it. Passive intake grills on the bottom panel help equalize pressure. Simple, proven, and easy to troubleshoot.
+
+The layout also got its first real sketch today. Three vertical layers inside the chassis: keyboard lid on top, motherboard sitting on nylon standoffs in the middle, and a lower bay at the bottom for the Pico PSU and the SSD. The chassis is targeting 16 to 17 inches wide. The internal framing will be a wooden skeleton. The SSD gets bracket-mounted to the chassis floor. The power button goes at the top of the keyboard area. A side IO panel on the right wall will handle USB, audio, and the DC power input. The rear IO from the motherboard stays accessible from the rear edge of the chassis.
+
+One important thing I confirmed today is that the HP 8200 motherboard uses proprietary power connectors, P1, P2, and P3, which means a straight 24-pin ATX connection from the Pico PSU is not enough. A custom adapter harness is required to map everything correctly, and the P2 connector in particular handles PS_ON and PWR_OK signals that need to be wired carefully or the board will not boot reliably. This is the one step I cannot rush.
+
+An inline 15A blade fuse is also going into the build between the DC input and the Pico PSU module. Learned that one the hard way from the PSU incident in Log 01.
+
+Overall today felt like the build going from scattered ideas into something I can actually execute. The architecture is solid. Now it is time to start sourcing parts and getting hands on the enclosure.
+
+## What I did today
+* Dropped battery-powered approach, committed to Pico PSU with external 12V brick
+* Finalized cooling architecture: blower intake fans, desktop LGA1155 CPU cooler, right wall exhaust vent
+* Ruled out laptop aluminum heatsink and liquid cooling for this build
+* Sketched the full chassis layout: three vertical layers, 16 to 17 inch target width, wooden skeleton framing
+* Confirmed HP proprietary P1/P2/P3 connector requirement and adapter harness as a critical build step
+* Added inline 15A blade fuse to the power chain plan
+* Identified local and online sourcing options for Pico PSU, 12V brick, CPU cooler, and adapter harness
+* Created initial top-down and side-profile layout diagrams for reference
+
+## Current status
+Full system architecture is locked. Power, cooling, and layout decisions are all made. The build is moving from planning phase into sourcing and prototyping phase.
+
+## Next step
+* Source the Pico PSU and 12V brick.
+* Confirm CPU cooler dimensions against chassis height budget.
+* Research the exact HP 8200 P2 pinout before any power testing
+* Begin the wooden skeleton prototype for the enclosure
